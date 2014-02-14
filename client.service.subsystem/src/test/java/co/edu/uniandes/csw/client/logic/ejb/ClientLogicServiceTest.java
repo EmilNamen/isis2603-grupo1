@@ -68,6 +68,8 @@ public class ClientLogicServiceTest {
 			ClientDTO pdto=new ClientDTO();
 			pdto.setName(generateRandom(String.class));
 			pdto.setCc(generateRandom(String.class));
+                        pdto.setLastName(generateRandom(String.class));
+                        pdto.setBirthDate(generateRandom(String.class));
 			pdto=clientPersistence.createClient(pdto);
 			data.add(pdto);
 		}
@@ -77,7 +79,10 @@ public class ClientLogicServiceTest {
 	public void createClientTest(){
 		ClientDTO ldto=new ClientDTO();
 		ldto.setName(generateRandom(String.class));
+                ldto.setLastName(generateRandom(String.class));
+                ldto.setBirthDate(generateRandom(String.class));
 		ldto.setCc(generateRandom(String.class));
+                
 		
 		
 		ClientDTO result=clientLogicService.createClient(ldto);
@@ -86,7 +91,9 @@ public class ClientLogicServiceTest {
 		
 		ClientDTO pdto=clientPersistence.getClient(result.getId());
 		
-		Assert.assertEquals(ldto.getName(), pdto.getName());	
+		Assert.assertEquals(ldto.getName(), pdto.getName());
+                Assert.assertEquals(ldto.getLastName(), pdto.getLastName());
+                Assert.assertEquals(ldto.getBirthDate(), pdto.getBirthDate());
 		Assert.assertEquals(ldto.getCc(), pdto.getCc());	
 	}
 	
@@ -112,6 +119,8 @@ public class ClientLogicServiceTest {
         Assert.assertNotNull(ldto);
 		Assert.assertEquals(pdto.getName(), ldto.getName());
 		Assert.assertEquals(pdto.getCc(), ldto.getCc());
+                Assert.assertEquals(ldto.getLastName(), pdto.getLastName());
+                Assert.assertEquals(ldto.getBirthDate(), pdto.getBirthDate());
         
 	}
 	
@@ -131,6 +140,8 @@ public class ClientLogicServiceTest {
 		ldto.setId(pdto.getId());
 		ldto.setName(generateRandom(String.class));
 		ldto.setCc(generateRandom(String.class));
+                ldto.setBirthDate(generateRandom(String.class));
+                ldto.setLastName(generateRandom(String.class));
 		
 		
 		clientLogicService.updateClient(ldto);
@@ -140,6 +151,8 @@ public class ClientLogicServiceTest {
 		
 		Assert.assertEquals(ldto.getName(), resp.getName());	
 		Assert.assertEquals(ldto.getCc(), resp.getCc());	
+                Assert.assertEquals(ldto.getLastName(), resp.getLastName());
+                Assert.assertEquals(ldto.getBirthDate(), resp.getBirthDate());
 	}
 	
 	public <T> T generateRandom(Class<T> objectClass){

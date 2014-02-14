@@ -73,6 +73,8 @@ public class ClientPersistenceTest {
 			ClientEntity entity=new ClientEntity();
 			entity.setName(generateRandom(String.class));
 			entity.setCc(generateRandom(String.class));
+                        entity.setBirthDate(generateRandom(String.class));
+                        entity.setLastName(generateRandom(String.class));
 			em.persist(entity);
 			data.add(entity);
 		}
@@ -83,6 +85,8 @@ public class ClientPersistenceTest {
 		ClientDTO dto=new ClientDTO();
 		dto.setName(generateRandom(String.class));
 		dto.setCc(generateRandom(String.class));
+                dto.setBirthDate(generateRandom(String.class));
+                dto.setLastName(generateRandom(String.class));
 		
 		
 		ClientDTO result=clientPersistence.createClient(dto);
@@ -92,7 +96,9 @@ public class ClientPersistenceTest {
 		ClientEntity entity=em.find(ClientEntity.class, result.getId());
 		
 		Assert.assertEquals(dto.getName(), entity.getName());	
-		Assert.assertEquals(dto.getCc(), entity.getCc());	
+		Assert.assertEquals(dto.getCc(), entity.getCc());
+                Assert.assertEquals(dto.getBirthDate(), entity.getBirthDate());
+                Assert.assertEquals(dto.getLastName(), entity.getLastName());
 	}
 	
 	@Test
@@ -115,8 +121,10 @@ public class ClientPersistenceTest {
 		ClientEntity entity=data.get(0);
 		ClientDTO dto=clientPersistence.getClient(entity.getId());
         Assert.assertNotNull(dto);
-		Assert.assertEquals(entity.getName(), dto.getName());
-		Assert.assertEquals(entity.getCc(), dto.getCc());
+		Assert.assertEquals(dto.getName(), entity.getName());	
+		Assert.assertEquals(dto.getCc(), entity.getCc());
+                Assert.assertEquals(dto.getBirthDate(), entity.getBirthDate());
+                Assert.assertEquals(dto.getLastName(), entity.getLastName());
         
 	}
 	
@@ -136,6 +144,8 @@ public class ClientPersistenceTest {
 		dto.setId(entity.getId());
 		dto.setName(generateRandom(String.class));
 		dto.setCc(generateRandom(String.class));
+                dto.setLastName(generateRandom(String.class));
+                dto.setBirthDate(generateRandom(String.class));
 		
 		
 		clientPersistence.updateClient(dto);
@@ -143,8 +153,10 @@ public class ClientPersistenceTest {
 		
 		ClientEntity resp=em.find(ClientEntity.class, entity.getId());
 		
-		Assert.assertEquals(dto.getName(), resp.getName());	
-		Assert.assertEquals(dto.getCc(), resp.getCc());	
+		Assert.assertEquals(dto.getName(), entity.getName());	
+		Assert.assertEquals(dto.getCc(), entity.getCc());
+                Assert.assertEquals(dto.getBirthDate(), entity.getBirthDate());
+                Assert.assertEquals(dto.getLastName(), entity.getLastName());
 	}
 	
 	public <T> T generateRandom(Class<T> objectClass){

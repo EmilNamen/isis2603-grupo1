@@ -16,6 +16,8 @@ public abstract class _ClientConverter {
 				dto.setId(entity.getId());
 				dto.setName(entity.getName());
 				dto.setCc(entity.getCc());
+                                dto.setBirthDate(entity.getBirthDate());
+                                dto.setLastName(entity.getLastName());
 			return dto;
 		}else{
 			return null;
@@ -28,6 +30,8 @@ public abstract class _ClientConverter {
 			entity.setId(dto.getId());
 			entity.setName(dto.getName());
 			entity.setCc(dto.getCc());
+                        entity.setBirthDate(dto.getBirthDate());
+                        entity.setLastName(dto.getLastName());
 			return entity;
 		}else {
 			return null;
