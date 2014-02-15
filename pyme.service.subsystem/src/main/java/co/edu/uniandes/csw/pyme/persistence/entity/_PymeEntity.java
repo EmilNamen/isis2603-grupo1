@@ -17,6 +17,8 @@ public abstract class _PymeEntity {
 	@GeneratedValue(generator = "Pyme")
 	private Long id;
 	private String description;
+        private String direccion;
+        private Integer telefono;
 
 	public String getName(){
 		return name;
@@ -38,5 +40,21 @@ public abstract class _PymeEntity {
 	
 	public void setDescription(String description){
 		this.description = description;
+	}
+        
+        public String getDireccion() {
+		return description;
+	}
+ 
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+        
+        public Integer getTelefono() {
+		return telefono;
+	}
+ 
+	public void setTelefono(Integer telefono) {
+		this.telefono = telefono;
 	}
 }

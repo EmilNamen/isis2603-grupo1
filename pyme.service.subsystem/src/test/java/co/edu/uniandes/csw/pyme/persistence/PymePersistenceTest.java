@@ -73,6 +73,8 @@ public class PymePersistenceTest {
 			PymeEntity entity=new PymeEntity();
 			entity.setName(generateRandom(String.class));
 			entity.setDescription(generateRandom(String.class));
+                        entity.setTelefono(generateRandom(Integer.class));
+                        entity.setDireccion(generateRandom(String.class));
 			em.persist(entity);
 			data.add(entity);
 		}
@@ -83,7 +85,8 @@ public class PymePersistenceTest {
 		PymeDTO dto=new PymeDTO();
 		dto.setName(generateRandom(String.class));
 		dto.setDescription(generateRandom(String.class));
-		
+		dto.setDireccion(generateRandom(String.class));
+                dto.setTelefono(generateRandom(Integer.class));
 		
 		PymeDTO result=pymePersistence.createPyme(dto);
 		
@@ -92,7 +95,9 @@ public class PymePersistenceTest {
 		PymeEntity entity=em.find(PymeEntity.class, result.getId());
 		
 		Assert.assertEquals(dto.getName(), entity.getName());	
-		Assert.assertEquals(dto.getDescription(), entity.getDescription());	
+		Assert.assertEquals(dto.getDescription(), entity.getDescription());
+                Assert.assertEquals(dto.getDireccion(), entity.getDireccion());	
+		Assert.assertEquals(dto.getTelefono(), entity.getTelefono());
 	}
 	
 	@Test
@@ -117,6 +122,8 @@ public class PymePersistenceTest {
         Assert.assertNotNull(dto);
 		Assert.assertEquals(entity.getName(), dto.getName());
 		Assert.assertEquals(entity.getDescription(), dto.getDescription());
+                Assert.assertEquals(entity.getDireccion(), dto.getDireccion());	
+		Assert.assertEquals(entity.getTelefono(), dto.getTelefono());
         
 	}
 	
@@ -136,7 +143,8 @@ public class PymePersistenceTest {
 		dto.setId(entity.getId());
 		dto.setName(generateRandom(String.class));
 		dto.setDescription(generateRandom(String.class));
-		
+		dto.setDireccion(generateRandom(String.class));
+                dto.setTelefono(generateRandom(Integer.class));
 		
 		pymePersistence.updatePyme(dto);
 		
@@ -144,7 +152,9 @@ public class PymePersistenceTest {
 		PymeEntity resp=em.find(PymeEntity.class, entity.getId());
 		
 		Assert.assertEquals(dto.getName(), resp.getName());	
-		Assert.assertEquals(dto.getDescription(), resp.getDescription());	
+		Assert.assertEquals(dto.getDescription(), resp.getDescription());
+                Assert.assertEquals(dto.getDireccion(), resp.getDireccion());	
+		Assert.assertEquals(dto.getTelefono(), resp.getTelefono());
 	}
 	
 	public <T> T generateRandom(Class<T> objectClass){

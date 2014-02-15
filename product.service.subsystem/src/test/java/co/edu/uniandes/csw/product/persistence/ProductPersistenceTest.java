@@ -72,7 +72,7 @@ public class ProductPersistenceTest {
 		for(int i=0;i<3;i++){
 			ProductEntity entity=new ProductEntity();
 			entity.setName(generateRandom(String.class));
-			entity.setValue(generateRandom(Long.class));
+			entity.setValue(generateRandom(Long.class));                       
 			em.persist(entity);
 			data.add(entity);
 		}
@@ -84,7 +84,6 @@ public class ProductPersistenceTest {
 		dto.setName(generateRandom(String.class));
 		dto.setValue(generateRandom(Long.class));
 		
-		
 		ProductDTO result=productPersistence.createProduct(dto);
 		
 		Assert.assertNotNull(result);
@@ -93,8 +92,6 @@ public class ProductPersistenceTest {
 		
 		Assert.assertEquals(dto.getName(), entity.getName());	
 		Assert.assertEquals(dto.getValue(), entity.getValue());
-                Assert.assertEquals(dto.getFechaExpedicion(), entity.getFechaExpedicion());
-                Assert.assertEquals(dto.getMarca(), entity.getMarca());
 	}
 	
 	@Test
@@ -119,8 +116,6 @@ public class ProductPersistenceTest {
         Assert.assertNotNull(dto);
 		Assert.assertEquals(entity.getName(), dto.getName());
 		Assert.assertEquals(entity.getValue(), dto.getValue());
-                Assert.assertEquals(entity.getFechaExpedicion(), dto.getFechaExpedicion());
-		Assert.assertEquals(entity.getMarca(), dto.getMarca());
         
 	}
 	
@@ -140,8 +135,6 @@ public class ProductPersistenceTest {
 		dto.setId(entity.getId());
 		dto.setName(generateRandom(String.class));
 		dto.setValue(generateRandom(Long.class));
-                dto.setFechaExpedicion(generateRandom(Date.class));
-		dto.setMarca(generateRandom(String.class));
 		
 		
 		productPersistence.updateProduct(dto);
@@ -150,9 +143,7 @@ public class ProductPersistenceTest {
 		ProductEntity resp=em.find(ProductEntity.class, entity.getId());
 		
 		Assert.assertEquals(dto.getName(), resp.getName());	
-		Assert.assertEquals(dto.getValue(), resp.getValue());
-                Assert.assertEquals(dto.getFechaExpedicion(), resp.getFechaExpedicion());	
-		Assert.assertEquals(dto.getMarca(), resp.getMarca());	
+		Assert.assertEquals(dto.getValue(), resp.getValue());	
 	}
 	
 	public <T> T generateRandom(Class<T> objectClass){

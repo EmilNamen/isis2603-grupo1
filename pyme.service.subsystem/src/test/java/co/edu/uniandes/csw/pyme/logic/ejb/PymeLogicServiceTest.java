@@ -68,6 +68,8 @@ public class PymeLogicServiceTest {
 			PymeDTO pdto=new PymeDTO();
 			pdto.setName(generateRandom(String.class));
 			pdto.setDescription(generateRandom(String.class));
+                        pdto.setDireccion(generateRandom(String.class));
+                        pdto.setTelefono(generateRandom(Integer.class));
 			pdto=pymePersistence.createPyme(pdto);
 			data.add(pdto);
 		}
@@ -78,6 +80,8 @@ public class PymeLogicServiceTest {
 		PymeDTO ldto=new PymeDTO();
 		ldto.setName(generateRandom(String.class));
 		ldto.setDescription(generateRandom(String.class));
+                ldto.setDireccion(generateRandom(String.class));
+                ldto.setTelefono(generateRandom(Integer.class));
 		
 		
 		PymeDTO result=pymeLogicService.createPyme(ldto);
@@ -87,7 +91,9 @@ public class PymeLogicServiceTest {
 		PymeDTO pdto=pymePersistence.getPyme(result.getId());
 		
 		Assert.assertEquals(ldto.getName(), pdto.getName());	
-		Assert.assertEquals(ldto.getDescription(), pdto.getDescription());	
+		Assert.assertEquals(ldto.getDescription(), pdto.getDescription());
+                Assert.assertEquals(ldto.getDireccion(), pdto.getDireccion());	
+		Assert.assertEquals(ldto.getTelefono(), pdto.getTelefono());
 	}
 	
 	@Test
@@ -112,6 +118,9 @@ public class PymeLogicServiceTest {
         Assert.assertNotNull(ldto);
 		Assert.assertEquals(pdto.getName(), ldto.getName());
 		Assert.assertEquals(pdto.getDescription(), ldto.getDescription());
+                Assert.assertEquals(pdto.getDireccion(), ldto.getDireccion());
+		Assert.assertEquals(pdto.getTelefono(), ldto.getTelefono());
+                
         
 	}
 	
@@ -131,7 +140,8 @@ public class PymeLogicServiceTest {
 		ldto.setId(pdto.getId());
 		ldto.setName(generateRandom(String.class));
 		ldto.setDescription(generateRandom(String.class));
-		
+		ldto.setDireccion(generateRandom(String.class));
+		ldto.setTelefono(generateRandom(Integer.class));
 		
 		pymeLogicService.updatePyme(ldto);
 		
@@ -139,7 +149,9 @@ public class PymeLogicServiceTest {
 		PymeDTO resp=pymePersistence.getPyme(pdto.getId());
 		
 		Assert.assertEquals(ldto.getName(), resp.getName());	
-		Assert.assertEquals(ldto.getDescription(), resp.getDescription());	
+		Assert.assertEquals(ldto.getDescription(), resp.getDescription());
+                Assert.assertEquals(ldto.getDireccion(), pdto.getDireccion());	
+		Assert.assertEquals(ldto.getTelefono(), pdto.getTelefono());
 	}
 	
 	public <T> T generateRandom(Class<T> objectClass){
