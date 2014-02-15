@@ -17,6 +17,8 @@ public abstract class _ProductEntity {
 	private Long id;
 	private String name;
 	private Long value;
+        private String marca;
+        private Date fechaExpedicion;
 
 	public Long getId(){
 		return id;
@@ -38,5 +40,21 @@ public abstract class _ProductEntity {
 	
 	public void setValue(Long value){
 		this.value = value;
+	}
+        
+         public String getMarca() {
+		return name;
+	}
+ 
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+        
+        public Date getFechaExpedicion() {
+		return fechaExpedicion;
+	}
+ 
+	public void setFechaExpedicion(Date fechaExpedicion) {
+		this.fechaExpedicion = fechaExpedicion;
 	}
 }

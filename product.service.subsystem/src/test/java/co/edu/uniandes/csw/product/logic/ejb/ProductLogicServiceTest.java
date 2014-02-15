@@ -68,6 +68,8 @@ public class ProductLogicServiceTest {
 			ProductDTO pdto=new ProductDTO();
 			pdto.setName(generateRandom(String.class));
 			pdto.setValue(generateRandom(Long.class));
+                        pdto.setFechaExpedicion(generateRandom(Date.class));
+                        pdto.setMarca(generateRandom(String.class));
 			pdto=productPersistence.createProduct(pdto);
 			data.add(pdto);
 		}
@@ -78,6 +80,8 @@ public class ProductLogicServiceTest {
 		ProductDTO ldto=new ProductDTO();
 		ldto.setName(generateRandom(String.class));
 		ldto.setValue(generateRandom(Long.class));
+                ldto.setFechaExpedicion(generateRandom(Date.class));
+                ldto.setMarca(generateRandom(String.class));
 		
 		
 		ProductDTO result=productLogicService.createProduct(ldto);
@@ -88,6 +92,8 @@ public class ProductLogicServiceTest {
 		
 		Assert.assertEquals(ldto.getName(), pdto.getName());	
 		Assert.assertEquals(ldto.getValue(), pdto.getValue());	
+                Assert.assertEquals(ldto.getFechaExpedicion(), pdto.getFechaExpedicion());
+                Assert.assertEquals(ldto.getMarca(), pdto.getMarca());
 	}
 	
 	@Test
@@ -112,6 +118,8 @@ public class ProductLogicServiceTest {
         Assert.assertNotNull(ldto);
 		Assert.assertEquals(pdto.getName(), ldto.getName());
 		Assert.assertEquals(pdto.getValue(), ldto.getValue());
+                Assert.assertEquals(pdto.getFechaExpedicion(), ldto.getFechaExpedicion());
+                Assert.assertEquals(pdto.getMarca(), ldto.getMarca());
         
 	}
 	
@@ -131,6 +139,8 @@ public class ProductLogicServiceTest {
 		ldto.setId(pdto.getId());
 		ldto.setName(generateRandom(String.class));
 		ldto.setValue(generateRandom(Long.class));
+                ldto.setFechaExpedicion(generateRandom(Date.class));
+                ldto.setMarca(generateRandom(String.class));
 		
 		
 		productLogicService.updateProduct(ldto);
@@ -139,7 +149,9 @@ public class ProductLogicServiceTest {
 		ProductDTO resp=productPersistence.getProduct(pdto.getId());
 		
 		Assert.assertEquals(ldto.getName(), resp.getName());	
-		Assert.assertEquals(ldto.getValue(), resp.getValue());	
+		Assert.assertEquals(ldto.getValue(), resp.getValue());
+                Assert.assertEquals(ldto.getFechaExpedicion(), resp.getFechaExpedicion());	
+		Assert.assertEquals(ldto.getMarca(), resp.getMarca());	
 	}
 	
 	public <T> T generateRandom(Class<T> objectClass){
